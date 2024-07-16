@@ -10,11 +10,13 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static('public'));
 // app.use(expressLayout);
 app.set('views', './resources/views');
-app.set('view engine', 'ejs');
-
 app.get("/",(req,res)=>{
     res.render("home.ejs");
 });
+
+app.get("/cart",(req,res)=>{
+    res.render("./customer/cart.ejs");
+})
 
 app.listen(3000,()=>{
     console.log("FreshFlow");

@@ -1,3 +1,47 @@
 body {
-  background-color: red;
+  font-family: sans-serif;
+  color: #232323;
+}
+
+nav li img {
+  background-color: rgb(206, 69, 14);
+}
+nav li img:hover {
+  background-color: rgb(247, 131, 85);
+}
+
+nav li a {
+  transition: all 0.2s ease-in-out;
+}
+nav li a:hover {
+  color: rgb(206, 69, 14);
+}
+
+section.hero {
+  background: #F8F8F8;
+}
+
+.s {
+  background: #F8F8F8;
+}
+
+.add-to-cart {
+  border: 2px solid #FE5F1E;
+  color: #FE5F1E;
+  transition: all 0.2s ease-in-out;
+}
+.add-to-cart:hover {
+  background: #FE5F1E;
+  border-color: #fff;
+  color: #fff;
+}
+.add-to-cart:focus {
+  outline: none;
+}
+
+.btn {
+  transition: all 0.2s ease-in-out;
+}
+.btn:hover {
+  background-color: rgb(206, 69, 14);
 }

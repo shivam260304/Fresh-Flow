@@ -1,4 +1,49 @@
-$primary : red;
+@import './variables.scss';
 body{
-    background-color: $primary;
+    font-family: sans-serif;
+    color: $dark;
+}
+nav div{
+    // background-color: azure;
+}
+nav li img {
+    &:hover{
+        background-color:rgb(247, 131, 85);
+    }
+    background-color: $primary-hover;
+    
+}
+nav li a{
+    transition: $smooth;
+    &:hover{
+        color: $primary-hover;
+    }
+}
+section.hero{
+    background: $secondary;
+}
+
+.s{
+    background: $secondary;
+
+}
+.add-to-cart {
+    border: 2px solid $primary;
+    color: $primary;
+    transition: $smooth;
+    &:hover {
+        background: $primary;
+        border-color: $pure;
+        color: $pure;
+    }
+    &:focus {
+        outline: none;
+    }
+}
+
+.btn{
+    transition: $smooth;
+    &:hover{
+        background-color:$primary-hover
+    }
 }
