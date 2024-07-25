@@ -2,21 +2,25 @@ const express= require('express');
 const app = express();
 
 const ejs = require('ejs');
-const expressLayout = require('express-ejs-layouts');
+const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static('public'));
-// app.use(expressLayout);
-app.set('views', './resources/views');
-app.get("/",(req,res)=>{
-    res.render("home.ejs");
-});
+// Connect mongoDb database from here
+const mongoose = require('mongoose');
+const url = 'mongodb://localhost/pizza';
+mongoose.connect(url);
 
-app.get("/cart",(req,res)=>{
-    res.render("./customer/cart.ejs");
-})
+
+app.use(express.static('public'));
+app.set('view engine', 'ejs');
+app.use(expressLayouts);
+app.set('views', './resources/views');
+
+// Landing page route here
+require('./routes/web')(app);
+
 
 app.listen(3000,()=>{
     console.log("FreshFlow");

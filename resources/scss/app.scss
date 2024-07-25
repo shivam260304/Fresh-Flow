@@ -38,9 +38,33 @@ section.hero{
     }
 }
 
-.btn{
+.btn-primary{
     transition: $smooth;
     &:hover{
         background-color:$primary-hover
     }
+}
+
+.order-btn{
+    transition: $smooth;
+    &:hover{
+        background-color:$primary-hover
+    }
+}
+
+.go-back-btn{
+    transition: $smooth;
+    &:hover{
+        background-color:$primary-hover
+    }
+}
+
+.empty-cart{
+    background-color: $secondary;
+    min-height: calc(100vh-60px);
+}
+
+section.login{
+    background-color: $secondary;
+    min-height: calc(100vh-60px);
 }
