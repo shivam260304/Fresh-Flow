@@ -1,14 +1,17 @@
 @import './variables.scss';
+// Import Toastr CSS
+@import "~toastr/build/toastr.min.css";
+
+
 body{
     font-family: sans-serif;
     color: $dark;
 }
-nav li img {
-    &:hover{
-        background-color:rgb(247, 131, 85);
+nav li:last-child a {
+    background: $primary;
+    &:hover {
+        background: $primary-hover;
     }
-    background-color: $primary-hover;
-    
 }
 nav li a{
     transition: $smooth;
@@ -61,10 +64,12 @@ section.hero{
 
 .empty-cart{
     background-color: $secondary;
-    min-height: calc(100vh-60px);
+    min-height: calc(100vh - 60px);
 }
 
 section.login{
     background-color: $secondary;
-    min-height: calc(100vh-60px);
+    min-height: calc(100vh - 60px);
 }
+
+

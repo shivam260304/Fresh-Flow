@@ -9,16 +9,22 @@
 </head>
 <body>
     <nav class="container flex items-center justify-between mx-auto py-4">
-        <div>
-            <img height="60px" width="50%" src="./img/logo.png" alt="logo">
+        <div class="ml-4">
+            <img src="./img/newLogo.png" alt="logo">
         </div>
         <div>
             <ul class="flex items-center mr-10">
-                <li class="ml-5"><a href="/">Menu</a></li>
-                <li class="ml-5"><a href="#">Offers</a></li>
-                <li class="ml-5"><a href="/register">Register</a></li>
-                <li class="ml-5"><a href="/login">Login</a></li>
-                <li class="ml-5"><a href="/cart"><img width="50px" height="50px" class="rounded-full" src="/img/cart.png" alt="" ></a></li>
+                <li class="ml-6"><a href="/">Menu</a></li>
+                <li class="ml-6"><a href="#">Offers</a></li>
+                <li class="ml-6"><a href="/register">Register</a></li>
+                <li class="ml-6"><a href="/login">Login</a></li>
+                <li class="ml-6"><a href="/cart" class="inline-block px-4 py-2 rounded-full flex items-center">
+                    <!-- Sessions(json) are not accessible to frontend, to make this available use global middleware -->
+                    <span id="cartCounter"
+                        class="text-white font-bold pr-2"><%= session.cart? session.cart.
+                        totalQty : '' %></span>
+                    <img src="/img/cartNew.png" alt="">
+                </a></li>
             </ul>
         </div>
     </nav>

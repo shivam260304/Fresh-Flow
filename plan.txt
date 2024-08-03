@@ -22,9 +22,9 @@
         - connect to mongo db
         - use connect-mongo for session store
             - dependancies
-                - mongoose, express-session, connect-mongo, dotenv
+                - mongoose, express-session, connect-mongo, dotenv, express-flash
     - axios to send ajax request
-    - install notification library npm i noty   https://ned.im/noty/#/
+    - install notification library npm i toastr
 [+] Create login page with route
 [+] Create register page with route
 [+] Build register crud
