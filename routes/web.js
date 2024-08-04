@@ -11,7 +11,9 @@ function init(app){
     
     app.post("/update-cart",cartController().update);
 
-    app.get("/login",authController().login)
+    app.get("/login",authController().login);
+
+    app.post("/login",authController().postLogin);
     
     app.get("/register",authController().register);
     

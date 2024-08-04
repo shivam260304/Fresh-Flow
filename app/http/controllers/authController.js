@@ -8,6 +8,9 @@ function authController() {
     login(req, res) {
       res.render("./auth/login.ejs");
     },
+    postLogin(req,res){
+      // Login logic;
+    },
     register(req, res) {
       res.render("./auth/register.ejs");
     },

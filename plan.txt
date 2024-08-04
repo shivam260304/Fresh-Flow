@@ -25,8 +25,8 @@
                 - mongoose, express-session, connect-mongo, dotenv, express-flash
     - axios to send ajax request
     - install notification library npm i toastr
-[+] Create login page with route
 [+] Create register page with route
+[+] Create login page with route // Steps passport.use(localStrategy), serialize, deserialize, authenticate
 [+] Build register crud
     - dependancies express-flash express-session dotenv
     - status code article https://www.restapitutorial.com/httpstatuscodes.html
