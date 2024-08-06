@@ -1,15 +1,26 @@
 // Factory function : It is a function that return an object, here controllers are factory fn
 
 const User = require("../../models/user");
+const passport = require("passport");
 const bcrypt = require("bcrypt");
+
 
 function authController() {
   return {
     login(req, res) {
       res.render("./auth/login.ejs");
     },
-    postLogin(req,res){
-      // Login logic;
+    postLogin(req,res,next){
+      const {email,password} =req.body;
+      if(!email || !password) {
+        req.flash('error', 'All fields are required')
+        return res.redirect('/login')
+    }
+    passport.authenticate('local', {
+      successRedirect: '/',
+      failureRedirect: '/login',
+      failureFlash: true
+    })(req,res,next);
     },
     register(req, res) {
       res.render("./auth/register.ejs");
@@ -57,6 +68,16 @@ function authController() {
           return res.redirect("/register");
         });
     },
+    logout(req,res){
+      // req.logout(function(err) {
+      //   if (err) { return next(err); }
+      //   req.flash('success_msg', 'You are logged out');
+      //   res.redirect('/');
+      // });
+      req.logout(()=>{
+        res.redirect('/login');
+      })
+    }
   };
 }
 
