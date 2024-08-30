@@ -11,14 +11,4 @@ function homeController() {
   };
 }
 
-// This is how we render logic segment of the routes;
-
-// function homeController() {
-//   return {
-//     index(req, res) {
-//       return res.render("home.ejs");
-//     }
-//   };
-// }
-
 module.exports = homeController;

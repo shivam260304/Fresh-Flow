@@ -11,6 +11,13 @@ nav li:last-child a:hover {
   background: rgb(206, 69, 14);
 }
 
+nav button {
+  transition: all 0.2s ease-in-out;
+}
+nav button:hover {
+  color: rgb(206, 69, 14);
+}
+
 nav li a {
   transition: all 0.2s ease-in-out;
 }
@@ -69,4 +76,8 @@ section.hero {
 section.login {
   background-color: #f1f0f0;
   min-height: calc(100vh - 60px);
+}
+
+a.link {
+  color: #FE5F1E;
 }

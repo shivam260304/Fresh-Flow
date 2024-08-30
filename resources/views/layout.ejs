@@ -10,14 +10,18 @@
 <body>
     <nav class="container flex items-center justify-between mx-auto py-4">
         <div class="ml-4">
-            <img src="./img/newLogo.png" alt="logo">
+            <a href="/"><img src="./img/newLogo.png" alt="logo"></a>
         </div>
         <div>
             <ul class="flex items-center mr-10">
                 <li class="ml-6"><a href="/">Menu</a></li>
                 <li class="ml-6"><a href="#">Offers</a></li>
                 <% if(user){%>
-                    <li class="ml-6"><a href="/logout">Logout</a></li>
+                    <li class="ml-6">
+                        <form action="/logout" method="POST">
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
                 <%} else{%>    
                     <li class="ml-6"><a href="/register">Register</a></li>
                     <li class="ml-6"><a href="/login">Login</a></li>

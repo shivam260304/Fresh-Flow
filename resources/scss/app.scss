@@ -13,6 +13,12 @@ nav li:last-child a {
         background: $primary-hover;
     }
 }
+nav button {
+    transition: $smooth;
+    &:hover{
+        color: $primary-hover;
+    }
+}
 nav li a{
     transition: $smooth;
     &:hover{
@@ -70,6 +76,10 @@ section.hero{
 section.login{
     background-color: $secondary;
     min-height: calc(100vh - 60px);
+}
+
+a.link{
+    color: $primary;
 }
 
 

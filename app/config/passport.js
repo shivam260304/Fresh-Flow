@@ -38,3 +38,9 @@ function init(passport) {
 }
 
 module.exports = init;
+
+// LocalStarategy -> fetching a user in USER COLLECTION by 'email', if all ok then ,
+// serializeUser -> storing this user's id in the session
+// deserialzeUser -> using this stored 'id' from the session and fetching
+    //  the 'USER COLLECTION' and returning the mathing user which we can access with
+      // req.user; which returns the whole user object

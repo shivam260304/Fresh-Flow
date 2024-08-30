@@ -3,6 +3,8 @@
 const axios = require("axios");
 // This paack is used to display the notifications
 const toastr = require("toastr");
+const moment = require("moment");
+const init = require("./admin");
 
 let addTocartBtn = document.querySelectorAll(".add-to-cart");
 let cartCounter = document.querySelector("#cartCounter");
@@ -31,3 +33,13 @@ function updateCart(pizza) {
     });
   });
 }
+
+// Remove alert message after X seconds
+const alertMsg = document.querySelector('#success-alert')
+if(alertMsg) {
+    setTimeout(() => {
+        alertMsg.remove()
+    }, 2000)
+}
+
+init();

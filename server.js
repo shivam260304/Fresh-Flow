@@ -65,10 +65,10 @@ app.use(express.urlencoded({ extended: false }));
 // By doing this all json files(session) will be accessible every for fronted file
 app.use(express.json());
 
-// Global middleware for using session in frontend and in general everywhere
+// Global middleware, entities inside it can be used anywhere in frontend files
 app.use((req, res, next) => {
   res.locals.session = req.session;
-  res.locals.user = req.user;
+  res.locals.user = req.user;  // It is possible through deserializeUser method
   next();
 });
 

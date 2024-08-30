@@ -17,7 +17,7 @@ function authController() {
         return res.redirect('/login')
     }
     passport.authenticate('local', {
-      successRedirect: '/',
+      successRedirect: '/order', // id admin logged in -> read middleware 'auth.js'
       failureRedirect: '/login',
       failureFlash: true
     })(req,res,next);
@@ -62,7 +62,7 @@ function authController() {
       });
 
       user.save().then((user) => {
-          return res.redirect("/");
+          return res.redirect("/login");
         }).catch((err) => {
           req.flash("error", "Something went wrong");
           return res.redirect("/register");
