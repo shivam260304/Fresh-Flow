@@ -1,3 +1,6 @@
+//                THIS FILE IS THE MAIN CLIENT FILE
+
+
 // This package is a popular js library used formaking http requets both from
 // browser and node.js environments. It also uses promises
 const axios = require("axios");
@@ -42,4 +45,31 @@ if(alertMsg) {
     }, 2000)
 }
 
+// Admin.js function is called here
 init();
+
+// Update order status with the line
+  // With the help of just an input, we're getting the dta from the singleOrder.ejs to this (app.js) file
+let hiddenInput = document.querySelector('#hidden-input');
+let order = hiddenInput? hiddenInput.value : null;
+order = JSON.parse(order);
+let statuses = document.querySelectorAll('.status_line')
+
+// The feature below is for color changing purpose
+function updateStatus(order) {
+  let stepCompleted = true;
+  statuses.forEach((status)=>{
+    let dataProp = status.dataset.status;
+    if(stepCompleted){
+      status.classList.add('step-completed')
+    }
+    if(dataProp === order.status) {
+      stepCompleted = false;
+      if(status.nextElementSibling){
+        status.nextElementSibling.classList.add('current')
+      }
+    }
+  })
+}
+
+updateStatus(order);

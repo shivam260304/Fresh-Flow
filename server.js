@@ -2,11 +2,12 @@ require("dotenv").config();
 
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 3000;
-
 const ejs = require("ejs");
-const expressLayouts = require("express-ejs-layouts");
 const path = require("path");
+const expressLayouts = require("express-ejs-layouts");
+const PORT = process.env.PORT || 3000;
+const mongoose = require("mongoose");
+
 
 // packages for session storage
 const session = require("express-session");
@@ -18,7 +19,6 @@ const MongoDbStore = require("connect-mongo");
 const passport = require("passport");
 
 // Connect mongoDb database from here
-const mongoose = require("mongoose");
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -74,12 +74,28 @@ app.use((req, res, next) => {
 
 // Set Template engine
 app.use(expressLayouts);
-app.set("views", "./resources/views");
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, 'resources/views'));
 
 // All routes here
 require("./routes/web")(app);
 
-app.listen(PORT, () => {
+
+
+const server = app.listen(PORT, () => {
   console.log("FreshFlow");
 });
+
+// All Socket Work
+const io = require("socket.io")(server);
+
+
+
+
+
+
+
+
+// Socket messages -> Help in real-time communication between client and server
+// EventEmmiter messages -> allows different parts of your application (modules, components)
+    // to communicate with each other by emitting and listening to events

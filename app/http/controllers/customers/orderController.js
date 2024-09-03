@@ -28,8 +28,17 @@ function init(){
         async index(req,res){
             const orders = await Order.find({customerId: req.user._id},null,{sort: {'createdAt' : -1}});
             res.render("customer/order",{orders,moment});
+        },
+        async singleOrder(req,res){
+            const order = await Order.findById(req.body.orderId);
+            if(req.user._id.toString() === order.customerId.toString()){
+                return res.render('customer/singleOrder', { order })
+            }
+            return  res.redirect('/')
         }
     }
 }
 
 module.exports = init;
+
+// Here I have used a form to send the data from order.ejs to orderController.js
