@@ -7,7 +7,7 @@ const axios = require("axios");
 // This paack is used to display the notifications
 const toastr = require("toastr");
 const moment = require("moment");
-const init = require("./admin");
+const adminInit = require("./admin");
 
 let addTocartBtn = document.querySelectorAll(".add-to-cart");
 let cartCounter = document.querySelector("#cartCounter");
@@ -46,7 +46,7 @@ if(alertMsg) {
 }
 
 // Admin.js function is called here
-init();
+adminInit();
 
 // Update order status with the line
   // With the help of just an input, we're getting the dta from the singleOrder.ejs to this (app.js) file
@@ -73,3 +73,23 @@ function updateStatus(order) {
 }
 
 updateStatus(order);
+
+// SOCKET CLIENT SIDE CODE
+let socket = io();  // (ref: line 48, layout.ejs)
+// JOIN , In layout page if order exist then client needs to send(emit) a message to server
+if(order){
+  socket.emit('join', `order_${order._id}`)
+}
+
+const path = window.location.pathname
+if(path.includes('admin')){
+    socket.emit('join', 'adminRoom');
+}
+
+socket.on('orderUpdated',(data)=>{
+  const updatedOrder = {...order}
+  updatedOrder.updatedAt = moment().format();
+  updatedOrder.status = data.status;
+  updateStatus(updatedOrder);
+})
+

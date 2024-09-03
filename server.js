@@ -7,6 +7,7 @@ const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
 const PORT = process.env.PORT || 3000;
 const mongoose = require("mongoose");
+const Emitter = require('events');
 
 
 // packages for session storage
@@ -45,6 +46,10 @@ app.use(
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
   })
 );
+
+// EVENT EMITTER
+const eventEmitter = new Emitter();
+app.set('eventEmitter', eventEmitter);
 
 // Passport config
 const passportInit = require("./app/config/passport");
@@ -86,10 +91,23 @@ const server = app.listen(PORT, () => {
   console.log("FreshFlow");
 });
 
-// All Socket Work
+// All Socket Work  (Server Side);
 const io = require("socket.io")(server);
+// Now with the help of above line  it automatically
+    //  serves the client-side script at the /socket.io/socket.io.js  (ref: line 48, layout.ejs)
+io.on('connection',(socket)=>{      // It will work everywhere on our app.
+  socket.on('join', (roomName)=>{    // It will work for only client layout having order
+    socket.join(roomName);           // Room is created with the name of orderId
+  })
+})  
 
+eventEmitter.on('orderUpdated', (data)=>{
+  io.to(`order_${data.id}`).emit('orderUpdated', data);
+})
 
+eventEmitter.on('orderPlaced',(result)=>{
+  io.to('adminRoom').emit('orderPlaced', result);
+})
 
 
 

@@ -78,4 +78,14 @@ function generateMarkup(orders){
     }).join('')
 }
 
+const socket = io();
+
+
+socket.on('orderPlaced', (result)=>{
+    orders.unshift(result);
+    body.innerHTML = '';
+    body.innerHTML = generateMarkup(result);
+})
+
+
 module.exports = init;
