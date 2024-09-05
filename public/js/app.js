@@ -33,7 +33,7 @@ function renderItems(items) {
 }
 function generateMarkup(orders) {
   return orders.map(function (order) {
-    return "\n            <tr>\n            <td class=\"border px-4 py-2 text-green-900\">\n                <p>".concat(order._id, "</p>\n                <div>").concat(renderItems(order.items), "</div>\n            </td>\n            <td class=\"border px-4 py-2\">").concat(order.customerId.name, "</td>\n            <td class=\"border px-4 py-2\">").concat(order.address, "</td>\n            <td class=\"border px-4 py-2\">\n                <div class=\"inline-block relative w-64\">\n                    <form action=\"/statusUpdate\" method=\"POST\">\n                        <input type=\"hidden\" name=\"orderId\" value=\"").concat(order._id, "\">\n                        <select name=\"status\" onchange=\"this.form.submit()\"\n                            class=\"block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline\">\n                            <option value=\"order_placed\"\n                                ").concat(order.status === 'order_placed' ? 'selected' : '', ">\n                                Placed</option>\n                            <option value=\"confirmed\" ").concat(order.status === 'confirmed' ? 'selected' : '', ">\n                                Confirmed</option>\n                            <option value=\"prepared\" ").concat(order.status === 'prepared' ? 'selected' : '', ">\n                                Prepared</option>\n                            <option value=\"delivered\" ").concat(order.status === 'delivered' ? 'selected' : '', ">\n                                Delivered\n                            </option>\n                            <option value=\"completed\" ").concat(order.status === 'completed' ? 'selected' : '', ">\n                                Completed\n                            </option>\n                        </select>\n                    </form>\n                    <div\n                        class=\"pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700\">\n                        <svg class=\"fill-current h-4 w-4\" xmlns=\"http://www.w3.org/2000/svg\"\n                            viewBox=\"0 0 20 20\">\n                            <path\n                                d=\"M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z\" />\n                        </svg>\n                    </div>\n                </div>\n            </td>\n            <td class=\"border px-4 py-2\">\n                ").concat(moment(order.createdAt).format('hh:mm A'), "\n            </td>\n            <td class=\"border px-4 py-2\">\n                ").concat(order.paymentStatus ? 'paid' : 'Not paid', "\n            </td>\n        </tr>\n    ");
+    return "\n            <tr>\n            <td class=\"border px-4 py-2 text-green-900\">\n                <p>".concat(order._id, "</p>\n                <div>").concat(renderItems(order.items), "</div>\n            </td>\n            <td class=\"border px-4 py-2\">").concat(order.customerId.name, "</td>\n            <td class=\"border px-4 py-2\">").concat(order.address, "</td>\n            <td class=\"border px-4 py-2\">\n                <div class=\"inline-block relative w-64\">\n                    <form action=\"/statusUpdate\" method=\"POST\">\n                        <input type=\"hidden\" name=\"orderId\" value=\"").concat(order._id, "\">\n                        <select name=\"status\" onchange=\"this.form.submit()\"\n                            class=\"block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline\">\n                            <option value=\"order_placed\"\n                                ").concat(order.status === 'order_placed' ? 'selected' : '', ">\n                                Placed</option>\n                            <option value=\"confirmed\" ").concat(order.status === 'confirmed' ? 'selected' : '', ">\n                                Confirmed</option>\n                            <option value=\"prepared\" ").concat(order.status === 'prepared' ? 'selected' : '', ">\n                                Prepared</option>\n                            <option value=\"delivered\" ").concat(order.status === 'delivered' ? 'selected' : '', ">\n                                Delivered\n                            </option>\n                            <option value=\"completed\" ").concat(order.status === 'completed' ? 'selected' : '', ">\n                                Completed\n                            </option>\n                        </select>\n                    </form>\n                    <div\n                        class=\"pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700\">\n                        <svg class=\"fill-current h-4 w-4\" xmlns=\"http://www.w3.org/2000/svg\"\n                            viewBox=\"0 0 20 20\">\n                            <path\n                                d=\"M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z\" />\n                        </svg>\n                    </div>\n                </div>\n            </td>\n            <td class=\"border px-4 py-2\">\n                ").concat(moment(order.createdAt).format('hh:mm A'), "\n            </td>\n        </tr>\n    ");
   }).join('');
 }
 var socket = io();
@@ -58,6 +58,13 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 //                THIS FILE IS THE MAIN CLIENT FILE
 
 // This package is a popular js library used formaking http requets both from
@@ -127,6 +134,36 @@ function updateStatus(order) {
   });
 }
 updateStatus(order);
+
+// AJAX Call
+var paymentForm = document.querySelector('#payment-form');
+if (paymentForm) {
+  paymentForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var formData = new FormData(paymentForm);
+    var formObject = {};
+    var _iterator = _createForOfIteratorHelper(formData.entries()),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var _step$value = _slicedToArray(_step.value, 2),
+          key = _step$value[0],
+          value = _step$value[1];
+        formObject[key] = value;
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+    axios.post('/order', formObject).then(function (res) {
+      window.location.href = '/order';
+    })["catch"](function (err) {
+      console.log(err);
+    });
+    console.log(formObject);
+  });
+}
 
 // SOCKET CLIENT SIDE CODE
 var socket = io(); // (ref: line 48, layout.ejs)

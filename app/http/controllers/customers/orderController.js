@@ -18,7 +18,6 @@ function init(){
             })
             order.save().then(async (result)=>{
                 const placedOrder = await Order.populate(result,{ path:'customerId'})
-                req.flash('success','Order placed successfully');
                 delete req.session.cart;
                 const eventEmitter = req.app.get('eventEmitter');
                 eventEmitter.emit('orderplaced', placedOrder);

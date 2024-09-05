@@ -74,6 +74,26 @@ function updateStatus(order) {
 
 updateStatus(order);
 
+// AJAX Call
+const paymentForm = document.querySelector('#payment-form');
+if(paymentForm){
+  paymentForm.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    let formData = new FormData(paymentForm);
+    let formObject= {};
+  
+    for(let [key,value] of formData.entries()){
+      formObject[key] = value;
+    } 
+    axios.post('/order', formObject).then((res)=>{
+      window.location.href = '/order';
+    }).catch((err)=>{
+      console.log(err);
+    })
+    console.log(formObject);
+  })
+}
+
 // SOCKET CLIENT SIDE CODE
 let socket = io();  // (ref: line 48, layout.ejs)
 // JOIN , In layout page if order exist then client needs to send(emit) a message to server
