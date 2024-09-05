@@ -186,3 +186,14 @@ section.status {
 .status-box ul li.current span:after {
   background: #FE5F1E;
 }
+
+@media (max-width: 560px) {
+  .container {
+    max-width: 90%;
+  }
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

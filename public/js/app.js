@@ -102,7 +102,6 @@ if (alertMsg) {
 }
 
 // Admin.js function is called here
-adminInit();
 
 // Update order status with the line
 // With the help of just an input, we're getting the dta from the singleOrder.ejs to this (app.js) file
@@ -137,6 +136,7 @@ if (order) {
 }
 var path = window.location.pathname;
 if (path.includes('admin')) {
+  adminInit();
   socket.emit('join', 'adminRoom');
 }
 socket.on('orderUpdated', function (data) {
