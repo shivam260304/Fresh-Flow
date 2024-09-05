@@ -45,7 +45,6 @@ if(alertMsg) {
     }, 2000)
 }
 
-// Admin.js function is called here
 
 
 // Update order status with the line
