@@ -8,6 +8,8 @@ const axios = require("axios");
 const toastr = require("toastr");
 const moment = require("moment");
 const adminInit = require("./admin");
+import {initStripe} from './stripe';
+
 
 let addTocartBtn = document.querySelectorAll(".add-to-cart");
 let cartCounter = document.querySelector("#cartCounter");
@@ -73,6 +75,9 @@ function updateStatus(order) {
 
 updateStatus(order);
 
+initStripe();
+
+
 // SOCKET CLIENT SIDE CODE
 let socket = io();  // (ref: line 48, layout.ejs)
 // JOIN , In layout page if order exist then client needs to send(emit) a message to server
@@ -92,4 +97,3 @@ socket.on('orderUpdated',(data)=>{
   updatedOrder.status = data.status;
   updateStatus(updatedOrder);
 })
-

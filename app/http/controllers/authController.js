@@ -17,7 +17,7 @@ function authController() {
         return res.redirect('/login')
     }
     passport.authenticate('local', {
-      successRedirect: '/order', // id admin logged in -> read middleware 'auth.js'
+      successRedirect: '/customerOrder', // id admin logged in -> read middleware 'auth.js'
       failureRedirect: '/login',
       failureFlash: true
     })(req,res,next);
