@@ -221,3 +221,15 @@ section.status {
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 }
+
+.pizzaColor {
+  background: #f1f0f0;
+}
+
+.size {
+  color: rgb(170, 86, 86);
+}
+
+.details {
+  color: #41474f;
+}
