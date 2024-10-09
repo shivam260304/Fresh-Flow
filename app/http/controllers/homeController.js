@@ -8,6 +8,7 @@ function homeController() {
       const pizzas = await Menu.find();
       return res.render("home.ejs", {pizzas});
     },
+
   };
 }
 

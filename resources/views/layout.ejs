@@ -12,13 +12,17 @@
   </head>
   <body>
     <nav class="container flex items-center justify-between mx-auto py-4">
-      <div class="ml-4">
-        <a href="/"><img src="./img/newLogo.png" alt="logo" /></a>
+      <div class="ml-4 flex items-center justify-between">
+        <a href="/"><img class="mainLogo"  src="./img/pizza.png" alt="logo" /></a>
+        <span class="ml-4 font-bold text-2xl">Fresh Flow</span>
       </div>
       <div>
         <ul class="flex items-center mr-10">
           <li class="ml-6"><a href="/">Menu</a></li>
           <% if(user){%>
+          <%if (user.role === 'Admin'){ %>
+            <li class="ml-6"><a href="/orderReport">Orders</a></li>
+          <%}%>
           <li class="ml-6">
             <form action="/logout" method="POST">
               <button type="submit">Logout</button>
